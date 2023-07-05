@@ -1,24 +1,50 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import Home from './components/home'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  let initTodo
+  if(localStorage.getItem("todos")===null){
+    initTodo = [];
+  }
+  else{
+    initTodo = JSON.parse(localStorage.getItem("todos"));
+  }
+  function onDelete(todo){
+
+
+    setTodos(todos.filter((e) =>{
+      return e!== todo;
+    }));
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+
+  const addTodo = (title, description) =>{
+    let sno;
+    if(todos.length === 0){
+       sno = 0
+    }
+    else{
+       sno = todos[todos.length-1].sno + 1;
+    }
+    const myTodo = {
+      sno: sno,
+      title: title,
+      description: description
+    }
+    setTodos([...todos, myTodo]);
+
+  }
+  
+  const [todos, setTodos] = useState(initTodo);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));      
+  }, [todos])
+
+  return (<>
+  <Home todo = {todos} onDelete = {onDelete} addTodo = {addTodo}/>
+  </>
   );
 }
 
