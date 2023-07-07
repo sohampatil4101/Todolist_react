@@ -1,8 +1,18 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Home from './components/home'
+import ReactGA from 'react-ga';
+
 
 function App() {
+
+  useEffect(() => {
+    ReactGA.initialize('UA-276939231-1');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
+
+
   let initTodo
   if(localStorage.getItem("todos")===null){
     initTodo = [];

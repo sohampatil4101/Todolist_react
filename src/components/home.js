@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
 import './home.css';
 import Todoitem from './todoitem';
+import ReactGA from 'react-ga';
+
 
 
 
 export default function Home(props) {
+  const handleClick = () => {
+    ReactGA.event({
+      category: 'User',
+      action: 'Clicked Button',
+    });
+  }
+
+
+
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -36,7 +48,7 @@ export default function Home(props) {
           <label htmlFor="">Description</label>  
           <textarea type="text" value={description} onChange={(e)=>{setDescription(e.target.value)}} />
         </div>  
-        <button>Submit</button>      
+        <button onClick={{handleClick}}>Add Todo</button>      
 
       </form>
       
