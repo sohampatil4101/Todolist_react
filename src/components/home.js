@@ -36,7 +36,7 @@ export default function Home(props) {
     <>
     <div className="container">
       <div className="heading">
-        <h3>Add Todo's Here</h3>      
+        <h3>Add Your Todo's Here</h3>      
       </div>
       <div className="content">
       <form onSubmit={submit}>
