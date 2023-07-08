@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import './home.css';
+import ReactGA from 'react-ga';
 
 
-export default function todoitem({todo, onDelete}) {
+
+export default function Todoitem({todo, onDelete}) {
+  useEffect(() => {
+    ReactGA.initialize("UA-276939231-2");
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
+
   return (
     <>
     <div className="container">

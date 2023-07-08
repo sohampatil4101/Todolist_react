@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './home.css';
 import Todoitem from './todoitem';
 import ReactGA from 'react-ga';
@@ -7,6 +7,13 @@ import ReactGA from 'react-ga';
 
 
 export default function Home(props) {
+  useEffect(() => {
+    ReactGA.initialize("UA-276939231-2");
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
+
+
   const handleClick = () => {
     ReactGA.event({
       category: 'User',
@@ -60,7 +67,7 @@ export default function Home(props) {
         <hr />
         </div>
         {
-        props.todo.length===0?"Sorry no Todolist":
+        props.todo.length===0?"Sorry no Todos in Todolist":
         props.todo.map((todo) =>{
           return <Todoitem key={props.todo.sno} todo = {todo} onDelete = {props.onDelete}/>
         })
