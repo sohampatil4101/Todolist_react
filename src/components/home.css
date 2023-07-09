@@ -19,11 +19,17 @@
     justify-content: center;
 }
 .form input, textarea{
+    border-radius: 10px;
+    padding: 0px 10px;
     display: flex;
     justify-content: center;
     min-width: 75vw;
     max-width: 75vw;
+    height: 30px;
     width: 75vw;
+}
+.form label{
+    margin: 0px 10px;
 }
 .content button{
     display: flex;
